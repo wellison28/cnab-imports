@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_210242) do
+ActiveRecord::Schema.define(version: 2020_08_15_212349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "recipients", force: :cascade do |t|
+    t.string "cpf", limit: 11, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cpf"], name: "index_recipients_on_cpf", unique: true
+  end
 
   create_table "stores", force: :cascade do |t|
     t.string "name", limit: 50, null: false
