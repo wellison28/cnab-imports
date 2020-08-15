@@ -5,6 +5,7 @@ require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
 require 'simplecov'
 require 'codecov'
+require 'database_cleaner/active_record'
 
 SimpleCov.start do
   enable_coverage :branch
@@ -27,4 +28,17 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+
+  config.include RequestHelper, type: :request
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.around do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
