@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 2020_08_16_004146) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer "kind"
     t.date "date"
     t.decimal "amount"
     t.string "card"

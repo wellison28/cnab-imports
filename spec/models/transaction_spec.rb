@@ -6,7 +6,6 @@ RSpec.describe Transaction, type: :model do
   subject(:transaction) { build(:transaction) }
 
   context 'with validations' do
-    it { is_expected.to validate_presence_of(:kind) }
     it { is_expected.to validate_presence_of(:date) }
     it { is_expected.to validate_presence_of(:amount) }
     it { is_expected.to validate_presence_of(:card) }
