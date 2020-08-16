@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe TransactionsController do
+describe StoreTransactionsController do
   describe 'GET /transactions' do
     before do
       create_list(:store, 3)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TransactionsController < ApplicationController
+class StoreTransactionsController < ApplicationController
   def index
     @stores = Store.all
   end

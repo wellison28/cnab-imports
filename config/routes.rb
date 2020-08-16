@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   resources :imports, only: %i[new create]
-  resources :transactions, only: %i[index]
+  resources :store_transactions, only: %i[index]
 end
