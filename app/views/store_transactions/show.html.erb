@@ -1,0 +1,29 @@
+<%= link_to "importar cnab", new_import_path %>
+<%= link_to "listagem de lojas", store_transactions_path %>
+
+<table>
+  <thead>
+    <th>Tipo</th>
+    <th>Data</th>
+    <th>Valor</th>
+    <th>CPF</th>
+    <th>Cartão</th>
+    <th>Hora</th>
+    <th>Dono Da Loja</th>
+    <th>Nome da Loja</th>
+  </thead>
+  <% @store_transactions.transactions.each do |transaction| %>
+    <tbody>
+      <tr>
+        <td><%= transaction.transaction_type.operation %></td>
+        <td><%= transaction.date %></td>
+        <td><%= transaction.amount %></td>
+        <td><%= transaction.recipient.cpf %></td>
+        <td><%= transaction.card %></td>
+        <td><%= transaction.hour %></td>
+        <td><%= transaction.store.owner_name %></td>
+        <td><%= transaction.store.name %></td>
+      </tr>
+    <tbody>
+  <% end %>
+</table>

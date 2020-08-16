@@ -1,5 +1,7 @@
 <h1>index import</h1>
 
+<%= link_to 'listagem', store_transactions_path %>
+
 <%= form_tag imports_path, enctype: "multipart/form-data", method: :post do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Upload" %>

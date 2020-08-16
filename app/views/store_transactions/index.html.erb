@@ -1,0 +1,11 @@
+<%= link_to "importar cnab", new_import_path %>
+
+<table>
+  <% @stores.each do |store| %>
+      <tr>
+        <td><%= link_to store.id, store_transaction_path(store) %></td>
+        <td><%= store.name %></td>
+        <td><%= store.owner_name %></td>
+      </tr>
+  <% end %>
+</table>
