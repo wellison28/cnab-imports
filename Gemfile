@@ -29,6 +29,7 @@ group :development, :test do
   gem 'rubocop-rspec'
   gem 'shoulda-matchers', '~> 4.3'
   gem 'simplecov'
+  gem 'pry-byebug'
 end
 
 group :development do
