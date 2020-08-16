@@ -1,0 +1,6 @@
+<h1>index import</h1>
+
+<%= form_tag imports_path, enctype: "multipart/form-data", method: :post do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload" %>
+<% end %>
