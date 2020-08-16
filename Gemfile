@@ -21,6 +21,7 @@ group :development, :test do
   gem 'database_cleaner', '~> 1.8'
   gem 'factory_bot_rails', '~> 5.1'
   gem 'faker', '~> 2.12'
+  gem 'pry-byebug'
   gem 'rails-controller-testing', '~> 1.0.4'
   gem 'rspec-rails', '~> 4.0.1'
   gem 'rubocop'
@@ -29,7 +30,6 @@ group :development, :test do
   gem 'rubocop-rspec'
   gem 'shoulda-matchers', '~> 4.3'
   gem 'simplecov'
-  gem 'pry-byebug'
 end
 
 group :development do

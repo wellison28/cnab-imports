@@ -16,13 +16,9 @@ class ImportCreateService
 
     Transaction.insert_all(transaction_params)
 
-    Result.new(
-      valid: true,
-      error_message: '',
-      data_result: []
-    )
-  rescue StandardError
-    Result.new(valid: false, error_message: 'algo deu errado', data_result: [])
+    Result.new(valid: true)
+  rescue OperationError => e
+    Result.new(valid: false, error_message: e.message)
   end
 
   private
@@ -33,18 +29,20 @@ class ImportCreateService
 
   def transaction_params
     object_parsed.data.map do |data|
-      {
-        date: data[:date],
-        amount: data[:amount],
-        card: data[:card],
-        hour: data[:hour],
-        recipient_id: recipient(data).id,
-        store_id: store(data).id,
-        transaction_type_id: transaction_type(data).id,
-        created_at: Time.zone.now,
-        updated_at: Time.zone.now
-      }
+      build_object(data)
     end
+  end
+
+  def build_object(data)
+    {
+      date: data[:date],
+      amount: data[:amount],
+      card: data[:card],
+      hour: data[:hour],
+      recipient_id: recipient(data).id,
+      store_id: store(data).id,
+      transaction_type_id: transaction_type(data).id
+    }
   end
 
   def recipient_params(data)
@@ -69,28 +67,10 @@ class ImportCreateService
   end
 
   def transaction_type(data)
-    TransactionType.find_by(kind: data[:kind])
+    TransactionType.find_by!(kind: data[:kind])
+  rescue StandardError
+    raise OperationError, 'operation does not exists'
   end
 
-  class Result
-    attr_accessor :valid, :error_message, :data_result
-
-    def initialize(valid:, error_message:, data_result:)
-      @valid = valid
-      @error_message = error_message
-      @data_result = data_result
-    end
-
-    def valid?
-      valid
-    end
-
-    def error
-      error_message
-    end
-
-    def data
-      data_result
-    end
-  end
+  class OperationError < StandardError; end
 end

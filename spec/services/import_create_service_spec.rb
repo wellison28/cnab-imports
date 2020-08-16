@@ -24,7 +24,7 @@ describe ImportCreateService do
 
   let(:parse_result) do
     OpenStruct.new(
-      parse: Parse::Cnab::Result.new(
+      parse: Result.new(
         data_result: parse_object,
         error_message: '',
         valid: true
@@ -64,7 +64,24 @@ describe ImportCreateService do
   end
 
   context 'when error' do
-    context 'when operation does not exists'
-    context 'when file has invalid format'
+    context 'when operation does not exists' do
+      let(:parse_object) do
+        [
+          {
+            kind: 999,
+            date: '1992-10-28',
+            amount: 1000.0,
+            cpf: '40255489846',
+            card: '676387263562',
+            hour: '13:23:34',
+            store_owner_name: 'john',
+            store_name: 'start big'
+          }
+        ]
+      end
+
+      it { expect(import_create.valid?).to eq(false) }
+      it { expect(import_create.error).to eq('operation does not exists') }
+    end
   end
 end
