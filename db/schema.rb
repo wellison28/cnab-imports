@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 2020_08_16_004146) do
     t.bigint "recipient_id", null: false
     t.bigint "store_id", null: false
     t.bigint "transaction_type_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["recipient_id"], name: "index_transactions_on_recipient_id"
     t.index ["store_id"], name: "index_transactions_on_store_id"
     t.index ["transaction_type_id"], name: "index_transactions_on_transaction_type_id"

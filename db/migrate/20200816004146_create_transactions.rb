@@ -9,7 +9,7 @@ class CreateTransactions < ActiveRecord::Migration[6.0]
       t.references :store, null: false, foreign_key: true
       t.references :transaction_type, null: false, foreign_key: true
 
-      t.timestamps
+      t.timestamps default: -> { 'CURRENT_TIMESTAMP' }
     end
   end
 end
