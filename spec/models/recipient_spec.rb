@@ -22,4 +22,8 @@ RSpec.describe Recipient, type: :model do
       it { expect(recipient.valid?).to eq(true) }
     end
   end
+
+  context 'with associations' do
+    it { is_expected.to have_many(:transactions).dependent(:restrict_with_exception) }
+  end
 end

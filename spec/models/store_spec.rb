@@ -12,4 +12,8 @@ RSpec.describe Store, type: :model do
     it { is_expected.to validate_length_of(:name).is_at_most(50) }
     it { is_expected.to validate_length_of(:owner_name).is_at_most(50) }
   end
+
+  context 'with associations' do
+    it { is_expected.to have_many(:transactions).dependent(:restrict_with_exception) }
+  end
 end
