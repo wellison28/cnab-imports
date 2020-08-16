@@ -8,16 +8,18 @@ describe ImportCreateService do
   let(:transaction_type) { create(:transaction_type, operation: 1) }
 
   let(:parse_object) do
-    {
-      kind: 1,
-      date: '1992-10-28',
-      amount: 1000.0,
-      cpf: '40255489846',
-      card: '676387263562',
-      hour: '13:23:34',
-      store_owner_name: 'john',
-      store_name: 'start big'
-    }
+    [
+      {
+        kind: 1,
+        date: '1992-10-28',
+        amount: 1000.0,
+        cpf: '40255489846',
+        card: '676387263562',
+        hour: '13:23:34',
+        store_owner_name: 'john',
+        store_name: 'start big'
+      }
+    ]
   end
 
   let(:parse_result) do

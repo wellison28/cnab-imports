@@ -12,9 +12,17 @@ class ImportCreateService
   end
 
   def create_transaction
-    return object_parsed.error unless object_parsed.valid?
+    return object_parsed unless object_parsed.valid?
 
-    Transaction.create!(transaction_params)
+    Transaction.insert_all!(transaction_params)
+
+    Result.new(
+      valid: true,
+      error_message: '',
+      data_result: []
+    )
+  rescue
+    Result.new(valid: false, error_message: 'algo deu errado', data_result: [])
   end
 
   private
@@ -24,39 +32,65 @@ class ImportCreateService
   end
 
   def transaction_params
+    object_parsed.data.map do |data|
+      {
+        date: data[:date],
+        amount: data[:amount],
+        card: data[:card],
+        hour: data[:hour],
+        recipient_id: recipient(data).id,
+        store_id: store(data).id,
+        transaction_type_id: transaction_type(data).id,
+        created_at: Time.now,
+        updated_at: Time.now
+      }
+    end
+  end
+
+  def recipient_params(data)
     {
-      date: object_parsed.data[:date],
-      amount: object_parsed.data[:amount],
-      card: object_parsed.data[:card],
-      hour: object_parsed.data[:hour],
-      recipient: recipient,
-      store: store,
-      transaction_type: transaction_type
+      cpf: data[:cpf]
     }
   end
 
-  def recipient_params
+  def store_params(data)
     {
-      cpf: object_parsed.data[:cpf]
+      name: data[:store_name],
+      owner_name: data[:store_owner_name]
     }
   end
 
-  def store_params
-    {
-      name: object_parsed.data[:store_name],
-      owner_name: object_parsed.data[:store_owner_name]
-    }
+  def recipient(data)
+    Recipient.find_or_create_by(recipient_params(data))
   end
 
-  def recipient
-    Recipient.find_or_create_by(recipient_params)
+  def store(data)
+    Store.find_or_create_by(store_params(data))
   end
 
-  def store
-    Store.find_or_create_by(store_params)
+  def transaction_type(data)
+    TransactionType.find_by(kind: data[:kind])
   end
 
-  def transaction_type
-    TransactionType.find_by(operation: object_parsed.data[:kind])
+  class Result
+    attr_accessor :valid, :error_message, :data_result
+
+    def initialize(valid:, error_message:, data_result:)
+      @valid = valid
+      @error_message = error_message
+      @data_result = data_result
+    end
+
+    def valid?
+      valid
+    end
+
+    def error
+      error_message
+    end
+
+    def data
+      data_result
+    end
   end
 end
