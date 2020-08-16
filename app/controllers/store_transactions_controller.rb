@@ -7,5 +7,6 @@ class StoreTransactionsController < ApplicationController
 
   def show
     @store_transactions = Store.find(params[:id])
+    @balance = StoreBalanceQuery.call(params[:id])
   end
 end
