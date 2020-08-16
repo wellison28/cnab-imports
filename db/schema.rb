@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 2020_08_16_004146) do
     t.integer "kind", limit: 2, null: false
     t.string "description", limit: 30, null: false
     t.integer "operation", limit: 2, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
 
   create_table "transactions", force: :cascade do |t|
