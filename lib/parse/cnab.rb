@@ -37,7 +37,7 @@ module Parse
         card: result_line.card,
         hour: result_line.hour,
         store_owner_name: result_line.store_owner_name,
-        owner_name: result_line.owner_name
+        store_name: result_line.owner_name
       }
     end
 

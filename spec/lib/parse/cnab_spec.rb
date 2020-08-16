@@ -20,7 +20,7 @@ describe Parse::Cnab do
           card: '676387263562',
           hour: '13:23:34',
           store_owner_name: 'john',
-          owner_name: 'start big'
+          store_name: 'start big'
         },
         {
           kind: 1,
@@ -30,7 +30,7 @@ describe Parse::Cnab do
           card: '676387263562',
           hour: '13:23:34',
           store_owner_name: 'john',
-          owner_name: 'start big'
+          store_name: 'start big'
         }
       ]
     end
