@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_212349) do
+ActiveRecord::Schema.define(version: 2020_08_16_004146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,4 +30,31 @@ ActiveRecord::Schema.define(version: 2020_08_15_212349) do
     t.index ["name"], name: "index_stores_on_name", unique: true
   end
 
+  create_table "transaction_types", force: :cascade do |t|
+    t.integer "kind", limit: 2, null: false
+    t.string "description", limit: 30, null: false
+    t.integer "operation", limit: 2, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "kind"
+    t.date "date"
+    t.decimal "amount"
+    t.string "card"
+    t.time "hour"
+    t.bigint "recipient_id", null: false
+    t.bigint "store_id", null: false
+    t.bigint "transaction_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipient_id"], name: "index_transactions_on_recipient_id"
+    t.index ["store_id"], name: "index_transactions_on_store_id"
+    t.index ["transaction_type_id"], name: "index_transactions_on_transaction_type_id"
+  end
+
+  add_foreign_key "transactions", "recipients"
+  add_foreign_key "transactions", "stores"
+  add_foreign_key "transactions", "transaction_types"
 end
