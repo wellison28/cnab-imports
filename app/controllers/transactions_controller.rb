@@ -6,5 +6,6 @@ class StoreTransactionsController < ApplicationController
   end
 
   def show
+    @store_transaction = Store.find(params[:id])
   end
 end

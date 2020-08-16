@@ -13,4 +13,15 @@ describe StoreTransactionsController do
     it { is_expected.to render_template(:index) }
     it { expect(assigns(:stores)).to eq(Store.all) }
   end
+
+  describe 'GET /transactions/1' do
+    let(:store) { create(:store) }
+
+    before do
+      get :show, params: { id: store.id }
+    end
+
+    it { is_expected.to render_template(:show) }
+    it { expect(assigns(:store_transactions)).to eq(store) }
+  end
 end
