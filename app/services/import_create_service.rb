@@ -14,14 +14,14 @@ class ImportCreateService
   def create_transaction
     return object_parsed unless object_parsed.valid?
 
-    Transaction.insert_all!(transaction_params)
+    Transaction.insert_all(transaction_params)
 
     Result.new(
       valid: true,
       error_message: '',
       data_result: []
     )
-  rescue
+  rescue StandardError
     Result.new(valid: false, error_message: 'algo deu errado', data_result: [])
   end
 
@@ -41,8 +41,8 @@ class ImportCreateService
         recipient_id: recipient(data).id,
         store_id: store(data).id,
         transaction_type_id: transaction_type(data).id,
-        created_at: Time.now,
-        updated_at: Time.now
+        created_at: Time.zone.now,
+        updated_at: Time.zone.now
       }
     end
   end
