@@ -5,7 +5,7 @@ class CreateTransactionTypes < ActiveRecord::Migration[6.0]
       t.string :description, limit: 30, null: false
       t.integer :operation, limit: 1, null: false
 
-      t.timestamps
+      t.timestamps default: -> { 'CURRENT_TIMESTAMP' }
     end
   end
 end
