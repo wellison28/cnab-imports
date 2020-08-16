@@ -6,8 +6,8 @@ FactoryBot.define do
     amount { '9.99' }
     card { 'MyString' }
     hour { '19:34:13' }
-    recipient { nil }
-    store { nil }
-    transaction_type { nil }
+    recipient
+    store
+    transaction_type
   end
 end
