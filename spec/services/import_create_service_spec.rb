@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe ImportCreateService do
@@ -43,7 +45,7 @@ describe ImportCreateService do
     it 'save corrects data for transaction' do
       expect(lasted_transaction.transaction_type.operation).to eq('debit')
       expect(lasted_transaction.amount.to_f).to eq(1000.0)
-      expect(lasted_transaction.date).to eq(Date.new(1992,10,28))
+      expect(lasted_transaction.date).to eq(Date.new(1992, 10, 28))
       expect(lasted_transaction.hour.strftime('%T')).to eq('13:23:34')
       expect(lasted_transaction.card).to eq('676387263562')
     end

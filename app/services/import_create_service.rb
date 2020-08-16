@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ImportCreateService
   attr_accessor :file
 
