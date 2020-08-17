@@ -41,14 +41,22 @@ describe Parse::Cnab do
   end
 
   context 'when failure' do
-    let(:file) do
-      Rails.root.join('spec/support/examples/invalid_cnab_file.txt')
-    end
-
     context 'when format is invalid' do
+      let(:file) do
+        Rails.root.join('spec/support/examples/invalid_cnab_file.txt')
+      end
+
       it { expect(parse_cnab.data).to eq([]) }
       it { expect(parse_cnab.valid?).to eq(false) }
       it { expect(parse_cnab.error).to eq('invalid format') }
+    end
+
+    context 'when file is blank' do
+      let(:file) {}
+
+      it { expect(parse_cnab.data).to eq([]) }
+      it { expect(parse_cnab.valid?).to eq(false) }
+      it { expect(parse_cnab.error).to eq('blank file') }
     end
   end
 end

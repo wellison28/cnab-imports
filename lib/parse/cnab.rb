@@ -9,9 +9,11 @@ module Parse
     end
 
     def parse
+      return failure 'blank file' if file.blank?
+
       Result.new(valid: true, data_result: iteration_on_file)
     rescue InvalidFormat => e
-      Result.new(valid: false, error_message: e.message)
+      failure e.message
     end
 
     private
@@ -39,6 +41,10 @@ module Parse
         store_owner_name: result_line.store_owner_name,
         store_name: result_line.store_name
       }
+    end
+
+    def failure(message)
+      Result.new(valid: false, error_message: message)
     end
 
     class InvalidFormat < StandardError; end
