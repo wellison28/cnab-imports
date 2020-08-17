@@ -6,7 +6,7 @@ class StoreTransactionsController < ApplicationController
   end
 
   def show
-    @store_transactions = Store.find(params[:id])
+    @store_transactions = Store.find(params[:id]).decorate
     @balance = StoreBalanceQuery.call(params[:id])
   end
 end

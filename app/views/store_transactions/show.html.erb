@@ -18,9 +18,9 @@
   <tbody>
   <% @store_transactions.transactions.each do |transaction| %>
     <tr>
-      <td><%= transaction.transaction_type.operation %></td>
+      <td><%= transaction.transaction_type.description %></td>
       <td><%= transaction.date %></td>
-      <td><%= transaction.amount %></td>
+      <td><%= number_to_currency(transaction.amount, unit: "R$ ", separator: ",", delimiter: ".") %></td>
       <td><%= transaction.recipient.cpf %></td>
       <td><%= transaction.card %></td>
       <td><%= transaction.hour %></td>

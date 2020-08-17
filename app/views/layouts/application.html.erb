@@ -16,22 +16,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-     
-
-<ul class="nav">
-  <li class="<%= 'active' if current_page?(new_import_path) %>"><%= link_to "Importar CNAB", new_import_path, class: "font-weight-bold nav-item nav-link" %></li>
-  <li class="<%= 'active' if current_page?(store_transactions_path) %>"><%= link_to "Lojas", store_transactions_path, class: "font-weight-bold nav-item nav-link" %></li>
-</ul>
-
+          <ul class="nav">
+            <li class="<%= 'active' if current_page?(new_import_path) %>"><%= link_to "Importar CNAB", new_import_path, class: "font-weight-bold nav-item nav-link" %></li>
+            <li class="<%= 'active' if current_page?(store_transactions_path) %>"><%= link_to "Lojas", store_transactions_path, class: "font-weight-bold nav-item nav-link" %></li>
+          </ul>
         </div>
       </div>
     </nav>
 
     <% flash.each do |type, msg| %>
-      <div class="alert alert-dark" role="alert">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <%= msg %>
       </div>
     <% end %>
+
     <div class="container">
       <%= yield %>
     </div>
