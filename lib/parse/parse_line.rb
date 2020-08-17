@@ -17,7 +17,7 @@ module Parse
     end
 
     def amount
-      line[9, 10].to_f
+      line[9, 10].to_f / 100
     end
 
     def cpf

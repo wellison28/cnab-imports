@@ -15,7 +15,7 @@ describe Parse::Cnab do
         {
           kind: 1,
           date: '1992-10-28',
-          amount: 1000.0,
+          amount: 10.0,
           cpf: '40255489846',
           card: '676387263562',
           hour: '13:23:34',
@@ -25,7 +25,7 @@ describe Parse::Cnab do
         {
           kind: 1,
           date: '1992-10-28',
-          amount: 1000.0,
+          amount: 10.0,
           cpf: '40255489846',
           card: '676387263562',
           hour: '13:23:34',

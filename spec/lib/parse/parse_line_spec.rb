@@ -8,7 +8,7 @@ describe Parse::ParseLine do
   let(:line) { '119921028000000100040255489846676387263562132334          john          start big' }
 
   it { expect(parsed_line.date).to eq('1992-10-28') }
-  it { expect(parsed_line.amount).to eq(1000.0) }
+  it { expect(parsed_line.amount).to eq(10.0) }
   it { expect(parsed_line.cpf).to eq('40255489846') }
   it { expect(parsed_line.card).to eq('676387263562') }
   it { expect(parsed_line.hour).to eq('13:23:34') }
