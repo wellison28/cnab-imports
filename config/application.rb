@@ -22,7 +22,7 @@ Bundler.require(*Rails.groups)
 module StoreTransactions
   class Application < Rails::Application
     config.load_defaults 6.0
-    config.autoload_paths += ["#{Rails.root}/lib", "#{Rails.root}/app/queries"]
+    config.autoload_paths += ["#{Rails.root}/lib", "#{Rails.root}/app/*"]
     config.generators.system_tests = nil
   end
 end
