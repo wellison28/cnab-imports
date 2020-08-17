@@ -45,3 +45,5 @@ coverage
 
 # ignore temporary files
 *.swp
+
+.env
