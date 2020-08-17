@@ -1,31 +1,31 @@
-<%= link_to "importar cnab", new_import_path %>
-<%= link_to "listagem de lojas", store_transactions_path %>
+<h2>
+<span class="badge badge-info">Saldo: <%= number_to_currency(@balance, unit: "R$ ", separator: ",", delimiter: ".") %></span>
+</h2>
 
-<h2>R$ <%= @balance %></h2>
-
-<table>
+<table class="table table-secondary table-hover">
   <thead>
-    <th>Tipo</th>
-    <th>Data</th>
-    <th>Valor</th>
-    <th>CPF</th>
-    <th>Cartão</th>
-    <th>Hora</th>
-    <th>Dono Da Loja</th>
-    <th>Nome da Loja</th>
+    <tr>
+      <th scope="col" class="text-center">Tipo</th>
+      <th scope="col" class="text-center">Data</th>
+      <th scope="col" class="text-center">Valor</th>
+      <th scope="col" class="text-center">CPF</th>
+      <th scope="col" class="text-center">Cartão</th>
+      <th scope="col" class="text-center">Hora</th>
+      <th scope="col" class="text-center">Dono da Loja</th>
+      <th scope="col" class="text-center">Nome da Loja</th>
+    </tr>
   </thead>
+  <tbody>
   <% @store_transactions.transactions.each do |transaction| %>
-    <tbody>
-      <tr>
-        <td><%= transaction.transaction_type.operation %></td>
-        <td><%= transaction.date %></td>
-        <td><%= transaction.amount %></td>
-        <td><%= transaction.recipient.cpf %></td>
-        <td><%= transaction.card %></td>
-        <td><%= transaction.hour %></td>
-        <td><%= transaction.store.owner_name %></td>
-        <td><%= transaction.store.name %></td>
-      </tr>
-    <tbody>
+    <tr>
+      <td><%= transaction.transaction_type.operation %></td>
+      <td><%= transaction.date %></td>
+      <td><%= transaction.amount %></td>
+      <td><%= transaction.recipient.cpf %></td>
+      <td><%= transaction.card %></td>
+      <td><%= transaction.hour %></td>
+      <td><%= transaction.store.owner_name %></td>
+      <td><%= transaction.store.name %></td>
+    </tr>
   <% end %>
 </table>
