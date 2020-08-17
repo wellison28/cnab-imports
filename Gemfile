@@ -8,6 +8,7 @@ ruby '2.7.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cpf_cnpj'
 gem 'dotenv-rails', '~> 2.7'
+gem 'draper'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '~> 1.2'
 gem 'puma', '~> 4.1'
@@ -15,7 +16,6 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
-gem 'draper'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

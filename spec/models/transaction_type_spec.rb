@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TransactionType, type: :model do
+describe TransactionType, type: :model do
   subject(:transaction_types) { create(:transaction_type) }
 
   context 'with validations' do

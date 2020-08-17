@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Recipient, type: :model do
+describe Recipient, type: :model do
   subject(:recipient) { build(:recipient) }
 
   context 'with validations' do

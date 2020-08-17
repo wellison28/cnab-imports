@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Store, type: :model do
+describe Store, type: :model do
   subject(:store) { build(:store) }
 
   context 'with validations' do
