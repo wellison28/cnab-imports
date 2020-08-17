@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Parse::ParseLine do
   subject(:parsed_line) { described_class.new(line) }
 
-  let(:line) { '128101992000000100040255489846676387263562132334          john          start big' }
+  let(:line) { '119921028000000100040255489846676387263562132334          john          start big' }
 
   it { expect(parsed_line.date).to eq('1992-10-28') }
   it { expect(parsed_line.amount).to eq(1000.0) }

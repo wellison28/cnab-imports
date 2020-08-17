@@ -13,7 +13,7 @@ module Parse
     end
 
     def date
-      "#{line[5, 4]}-#{line[3, 2]}-#{line[1, 2]}"
+      "#{line[1, 4]}-#{line[5, 2]}-#{line[7, 2]}"
     end
 
     def amount
